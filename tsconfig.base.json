@@ -14,7 +14,21 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ngrx-leaky-backends/customer/data-access": [
+        "libs/customer/data-access/src/index.ts"
+      ],
+      "@ngrx-leaky-backends/customer/dtos": ["libs/customer/dtos/src/index.ts"],
+      "@ngrx-leaky-backends/customer/feature-list": [
+        "libs/customer/feature-list/src/index.ts"
+      ],
+      "@ngrx-leaky-backends/customer/state": [
+        "libs/customer/state/src/index.ts"
+      ],
+      "@ngrx-leaky-backends/shared/util-env": [
+        "libs/shared/util-env/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
