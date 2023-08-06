@@ -1,5 +1,17 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Store } from '@ngrx/store';
+import {
+  CustomersPartialState,
+  loadCustomers,
+  selectAllCustomers,
+  selectCustomersLoaded,
+} from '@ngrx-leaky-backends/customer/state';
 
 @Component({
   selector: 'ngrx-leaky-backends-feature-list',
@@ -9,4 +21,14 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./feature-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FeatureListComponent {}
+export class FeatureListComponent implements OnInit {
+  private readonly store = inject(Store<CustomersPartialState>);
+  readonly customersSignal = this.store.selectSignal(selectAllCustomers);
+  readonly customersLoadedSignal = this.store.selectSignal(
+    selectCustomersLoaded
+  );
+
+  ngOnInit() {
+    this.store.dispatch(loadCustomers());
+  }
+}

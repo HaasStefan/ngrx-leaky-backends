@@ -5,8 +5,10 @@ import { HttpClient } from '@angular/common/http';
 import { CustomerDto } from '@ngrx-leaky-backends/customer/dtos';
 import { filter, map, Observable, of } from 'rxjs';
 
-@Injectable()
-export class CustomerMockAdapterService extends CustomerPortService {
+@Injectable({
+  providedIn: 'root',
+})
+export class CustomerMockAdapterService implements CustomerPortService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = '/assets/customers.json';
 
@@ -19,10 +21,10 @@ export class CustomerMockAdapterService extends CustomerPortService {
               id: customerDto.id,
               firstName: customerDto.first_name,
               lastName: customerDto.last_name,
-              dateOfBirth: new Date(customerDto.date_of_birth),
+              dateOfBirth: new Date(customerDto.date_of_birth * 1000),
               email: customerDto.email,
               phone: customerDto.phone,
-            } as Customer)
+            } satisfies Customer)
         )
       ),
       map((customers) => customers.find((customer) => customer.id === id)),
@@ -39,15 +41,14 @@ export class CustomerMockAdapterService extends CustomerPortService {
               id: customerDto.id,
               firstName: customerDto.first_name,
               lastName: customerDto.last_name,
-              dateOfBirth: new Date(customerDto.date_of_birth),
+              dateOfBirth: new Date(customerDto.date_of_birth * 1000),
               email: customerDto.email,
               phone: customerDto.phone,
-            } as Customer)
+            } satisfies Customer)
         )
       )
     );
   }
-
 
   create(customer: Customer): Observable<Customer> {
     return of(customer);

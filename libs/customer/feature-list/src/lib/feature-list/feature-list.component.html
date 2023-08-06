@@ -1,1 +1,13 @@
-<p>feature-list works!</p>
+<h1>Customer List</h1>
+
+<ng-container *ngIf="!customersLoadedSignal(); else loaded">
+  Loading...
+</ng-container>
+
+<ng-template #loaded>
+  <ul>
+    <li *ngFor="let customer of customersSignal()">
+      <pre><code>{{customer | json}}</code></pre>
+    </li>
+  </ul>
+</ng-template>

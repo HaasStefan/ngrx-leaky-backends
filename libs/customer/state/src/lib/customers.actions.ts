@@ -3,6 +3,10 @@ import { CustomersEntity } from './customers.models';
 
 export const initCustomers = createAction('[Customers Page] Init');
 
+export const loadCustomers = createAction(
+  '[Customers/API] Load Customers'
+);
+
 export const loadCustomersSuccess = createAction(
   '[Customers/API] Load Customers Success',
   props<{ customers: CustomersEntity[] }>()
