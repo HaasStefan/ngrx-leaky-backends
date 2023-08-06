@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { useCustomerAdapter } from '../factories/customer-adapter-factory.util';
-import { Customer } from '../models/cutomer.model';
+import { Customer } from '../models/customer.model';
 
 @Injectable({
   providedIn: 'root',

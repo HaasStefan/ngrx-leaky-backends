@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Customer } from '../models/cutomer.model';
+import { Customer } from '../models/customer.model';
 import { CustomerPortService } from '../ports/customer-port.service';
 import { HttpClient } from '@angular/common/http';
 import { CustomerDto } from '@ngrx-leaky-backends/customer/dtos';

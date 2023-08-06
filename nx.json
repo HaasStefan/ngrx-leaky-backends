@@ -49,10 +49,16 @@
     },
     "@nx/angular:library": {
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "standalone": true
     },
     "@nx/angular:component": {
-      "style": "scss"
+      "style": "scss",
+      "skipTests": true,
+      "standalone": true
+    },
+    "@nx/angular:service": {
+      "skipTests": true
     }
   }
 }

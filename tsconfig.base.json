@@ -22,6 +22,9 @@
       "@ngrx-leaky-backends/customer/feature-list": [
         "libs/customer/feature-list/src/index.ts"
       ],
+      "@ngrx-leaky-backends/customer/routes": [
+        "libs/customer/routes/src/index.ts"
+      ],
       "@ngrx-leaky-backends/customer/state": [
         "libs/customer/state/src/index.ts"
       ],

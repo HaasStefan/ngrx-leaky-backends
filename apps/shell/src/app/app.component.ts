@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent],
+  imports: [RouterOutlet],
   selector: 'ngrx-leaky-backends-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  title = 'shell';
 }

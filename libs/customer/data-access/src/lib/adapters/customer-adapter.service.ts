@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Customer } from "../models/cutomer.model";
+import { Customer } from "../models/customer.model";
 import { CustomerPortService } from "../ports/customer-port.service";
 
 /**

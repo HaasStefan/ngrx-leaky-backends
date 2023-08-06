@@ -13,31 +13,35 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "app",
-                "onlyDependOnLibsWithTags": ["feature", "ui", "state"]
+                "sourceTag": "type:app",
+                "onlyDependOnLibsWithTags": ["type:feature", "type:routes", "type:ui", "type:state"]
               },
               {
-                "sourceTag": "feature",
-                "onlyDependOnLibsWithTags": ["ui", "state", "util"]
+                "sourceTag": "type:routes",
+                "onlyDependOnLibsWithTags": ["type:feature", "type:util", "type:state"]
               },
               {
-                "sourceTag": "ui",
-                "onlyDependOnLibsWithTags": ["util"]
+                "sourceTag": "type:feature",
+                "onlyDependOnLibsWithTags": ["type:ui", "type:state", "type:util"]
               },
               {
-                "sourceTag": "util",
+                "sourceTag": "type:ui",
+                "onlyDependOnLibsWithTags": ["type:util"]
+              },
+              {
+                "sourceTag": "type:util",
                 "onlyDependOnLibsWithTags": []
               },
               {
-                "sourceTag": "state",
-                "onlyDependOnLibsWithTags": ["util", "data-access"]
+                "sourceTag": "type:state",
+                "onlyDependOnLibsWithTags": ["type:util", "type:data-access"]
               },
               {
-                "sourceTag": "data-access",
-                "onlyDependOnLibsWithTags": ["util", "dtos"]
+                "sourceTag": "type:data-access",
+                "onlyDependOnLibsWithTags": ["type:util", "type:dtos"]
               },
               {
-                "sourceTag": "dtos",
+                "sourceTag": "type:dtos",
                 "onlyDependOnLibsWithTags": []
               },
               {
