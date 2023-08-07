@@ -1,42 +1,39 @@
-import { Injectable, inject } from '@angular/core';
+import { inject } from '@angular/core';
 import { CustomerPortService } from '@ngrx-leaky-backends/customer/data-access';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { switchMap, catchError, of } from 'rxjs';
-import * as CustomersActions from './customers.actions';
-import * as CustomersFeature from './customers.reducer';
+import { customerApiActions, initCustomers } from './customers.actions';
 
-@Injectable()
-export class CustomersEffects {
-  private readonly actions$ = inject(Actions);
-  private readonly customerService = inject(CustomerPortService);
-
-  readonly init$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(CustomersActions.initCustomers),
+export const init = createEffect(
+  (actions$ = inject(Actions)) =>
+    actions$.pipe(
+      ofType(initCustomers),
       switchMap(() =>
-        of(CustomersActions.loadCustomersSuccess({ customers: [] }))
+        of(customerApiActions.loadCustomersSuccess({ customers: [] }))
       ),
       catchError((error) => {
         console.error('Error', error);
-        return of(CustomersActions.loadCustomersFailure({ error }));
+        return of(customerApiActions.loadCustomersFailure({ error }));
       })
-    )
-  );
+    ),
+  { functional: true }
+);
 
-  readonly loadCustomers$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(CustomersActions.loadCustomers),
+export const loadCustomers = createEffect(
+  (actions$ = inject(Actions), customerService = inject(CustomerPortService)) =>
+    actions$.pipe(
+      ofType(customerApiActions.loadCustomers),
       switchMap(() =>
-        this.customerService.loadAll().pipe(
+        customerService.loadAll().pipe(
           switchMap((customers) =>
-            of(CustomersActions.loadCustomersSuccess({ customers }))
+            of(customerApiActions.loadCustomersSuccess({ customers }))
           ),
           catchError((error) => {
             console.error('Error', error);
-            return of(CustomersActions.loadCustomersFailure({ error }));
+            return of(customerApiActions.loadCustomersFailure({ error }));
           })
         )
       )
-    )
-  );
-}
+    ),
+  { functional: true }
+);

@@ -1,18 +1,18 @@
-import { createAction, props } from '@ngrx/store';
+import {
+  createAction,
+  createActionGroup,
+  emptyProps,
+  props,
+} from '@ngrx/store';
 import { CustomersEntity } from './customers.models';
 
 export const initCustomers = createAction('[Customers Page] Init');
 
-export const loadCustomers = createAction(
-  '[Customers/API] Load Customers'
-);
-
-export const loadCustomersSuccess = createAction(
-  '[Customers/API] Load Customers Success',
-  props<{ customers: CustomersEntity[] }>()
-);
-
-export const loadCustomersFailure = createAction(
-  '[Customers/API] Load Customers Failure',
-  props<{ error: any }>()
-);
+export const customerApiActions = createActionGroup({
+  source: 'Customers API',
+  events: {
+    loadCustomers: emptyProps(),
+    loadCustomersSuccess: props<{ customers: CustomersEntity[] }>(),
+    loadCustomersFailure: props<{ error: unknown }>(),
+  },
+});

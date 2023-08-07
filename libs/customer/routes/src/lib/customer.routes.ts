@@ -2,17 +2,16 @@ import { Routes } from '@angular/router';
 import { provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import {
-  CustomersEffects,
-  customersReducer,
-  CUSTOMERS_FEATURE_KEY,
+  customersEffects,
+  customersFeature,
 } from '@ngrx-leaky-backends/customer/state';
 
 export const routes: Routes = [
   {
     path: '',
     providers: [
-      provideState(CUSTOMERS_FEATURE_KEY, customersReducer),
-      provideEffects(CustomersEffects),
+      provideState(customersFeature),
+      provideEffects(customersEffects),
     ],
     children: [
       {
